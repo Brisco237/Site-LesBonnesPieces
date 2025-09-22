@@ -3,7 +3,8 @@
         "id": 1,
         "nom": "Ampoule LED",
         "prix": 60,
-        "categorie": "Optiques"
+        "categorie": "Optiques",
+        "image": "images/ampoule-led.png"
     },
     {
         "id": 2,
