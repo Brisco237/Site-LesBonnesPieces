@@ -2,6 +2,7 @@
 const reponse = await fetch("pieces-autos.json");
 const pieces = await reponse.json();
 
+// Récupération du premier article et création des éléments HTML
 const article = pieces[0];
 const imageElement = document.createElement("img");
 imageElement.src = article.image;
@@ -12,6 +13,7 @@ prixElement.innerText = `Prix: ${article.prix} £ (${article.prix < 35 ? "£" : 
 const categorieElement = document.createElement("p");
 categorieElement.innerText = article.categorie ?? ("Aucune catégorie");
 
+// Ajout des éléments au DOM
 const sectionFiches = document.querySelector(".fiches");
 sectionFiches.appendChild(imageElement);
 sectionFiches.appendChild(nomElement);
