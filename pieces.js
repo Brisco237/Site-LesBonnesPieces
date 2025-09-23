@@ -36,3 +36,8 @@ for (let i = 0; i < pieces.length; i++) {
 
  }
  
+ // Ajout des fonctionnalités de tri et de filtre
+    const btnTrier = document.querySelector(".btn-trier");  
+    btnTrier.addEventListener("click", () => {
+        
+    })
