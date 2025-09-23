@@ -73,3 +73,14 @@ for (let i = 0; i < trieDepiecesAbordables.length; i++) {
    ul.appendChild(li)
 }
 
+// Afficher les pieces disponibles
+let piecesDisponibles = document.querySelector(".disponibles");
+let piecesEnStock = pieces.filter(piece => piece.disponibilite == true);
+
+let ul2 = document.createElement("ul")
+piecesDisponibles.appendChild(ul2)
+for (let i = 0; i < piecesEnStock.length; i++) {
+   let li2 = document.createElement("li")
+   li2.innerText = piecesEnStock.map(piece => piece.nom)[i]
+   ul2.appendChild(li2)
+}
