@@ -44,6 +44,7 @@ document.querySelector(".fiches").innerHTML = '';
 const btnTrier = document.querySelector(".btn-trier");
 btnTrier.addEventListener("click", () => {
    pieces.sort((a, b) => a.prix - b.prix);
+   document.querySelector(".fiches").innerHTML = '';
    genererPieces(pieces);
 })
 const btnFiltrer = document.querySelector(".btn-filtrer");
@@ -63,6 +64,14 @@ btn_sansdescription.addEventListener("click", () => {
    document.querySelector(".fiches").innerHTML = '';
    let piecesSansDescription  = pieces.filter(piece => piece.description == undefined);
    genererPieces(piecesSansDescription)
+})
+
+// Prix-max
+let prixmax = document.querySelector("#prix-max");
+prixmax.addEventListener("input", () => {
+   let piecesFiltrer = pieces.filter(piece => piece.prix <= prixmax.value);
+   document.querySelector(".fiches").innerHTML = '';
+   genererPieces(piecesFiltrer)
 })
 
 // Affichage des pièces abordables dans une liste

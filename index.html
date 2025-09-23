@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>Les Bonnes Pièces</title>
 		<link rel="stylesheet" href="styles.css">
-		<script type="module" src="pieces.js"></script>
+		<script type="module" src="pieces.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -22,6 +22,9 @@
 				<button class="btn_trierd">Trier par prix décroissant</button>
 				<br>
 				<button class="btn_sansdescription">Filtrer les pieces sans description</button>
+				<br>
+				<p>Prix maximum:</p>
+				<input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5">
 			</section>
 
 			<!-- Fiches produits -->
