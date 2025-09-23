@@ -36,8 +36,30 @@ for (let i = 0; i < pieces.length; i++) {
 
  }
  
- // Ajout des fonctionnalités de tri et de filtre
-    const btnTrier = document.querySelector(".btn-trier");  
-    btnTrier.addEventListener("click", () => {
-        
-    })
+// Ajout des fonctionnalités de tri et de filtre
+const btnTrier = document.querySelector(".btn-trier");
+btnTrier.addEventListener("click", () => {
+   pieces.sort((a, b) => b.prix - a.prix);
+   console.log(pieces)
+   const nomDesPieces = pieces.map(piece => piece.nom);
+   console.log(nomDesPieces);
+})
+const btnFiltrer = document.querySelector(".btn-filtrer");
+btnFiltrer.addEventListener("click", () => {
+   let prixAbordables = pieces.filter(piece => piece.prix < 35);
+   console.log(prixAbordables)
+})
+
+// Affichage des pièces abordables dans une liste
+let piecesAbordables = document.querySelector(".abordables");
+let trieDepiecesAbordables = pieces.filter(piece => piece.prix < 35);
+
+let ul = document.createElement("ul")
+piecesAbordables.appendChild(ul)
+
+for (let i = 0; i < trieDepiecesAbordables.length; i++) {
+   let li = document.createElement("li")
+   li.innerText = trieDepiecesAbordables.map(piece => piece.nom)[i]
+   ul.appendChild(li)
+}
+
