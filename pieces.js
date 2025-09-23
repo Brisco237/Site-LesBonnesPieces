@@ -2,65 +2,71 @@
 const reponse = await fetch('pieces-autos.json');
 const pieces = await reponse.json();
 
-for (let i = 0; i < pieces.length; i++) {
+function genererPieces(pieces) {
+   for (let i = 0; i < pieces.length; i++) {
 
-    const article = pieces[i];
-    // Récupération de l'élément du DOM qui accueillera les fiches
-    const sectionFiches = document.querySelector(".fiches");
-    // Création d’une balise dédiée à une pièce automobile
-    const pieceElement = document.createElement("article");
-    // Création des balises 
-    const imageElement = document.createElement("img");
-    imageElement.src = article.image;
-    const nomElement = document.createElement("h2");
-    nomElement.innerText = article.nom;
-    const prixElement = document.createElement("p");
-    prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
-    const categorieElement = document.createElement("p");
-    categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
-    const descriptionElement = document.createElement("p");
-    descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
-    const stockElement = document.createElement("p");
-    stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
-    
-    // On rattache la balise article a la section Fiches
-    sectionFiches.appendChild(pieceElement);
-    // On rattache l’image à pieceElement (la balise article)
-    pieceElement.appendChild(imageElement);
-    pieceElement.appendChild(nomElement);
-    pieceElement.appendChild(prixElement);
-    pieceElement.appendChild(categorieElement);
-    //Ajout des éléments au DOM pour l'exercice
-    pieceElement.appendChild(descriptionElement);
-    pieceElement.appendChild(stockElement);
+      const article = pieces[i];
+      // Récupération de l'élément du DOM qui accueillera les fiches
+      const sectionFiches = document.querySelector(".fiches");
+      // Création d’une balise dédiée à une pièce automobile
+      const pieceElement = document.createElement("article");
+      // Création des balises 
+      const imageElement = document.createElement("img");
+      imageElement.src = article.image;
+      const nomElement = document.createElement("h2");
+      nomElement.innerText = article.nom;
+      const prixElement = document.createElement("p");
+      prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
+      const categorieElement = document.createElement("p");
+      categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
+      const descriptionElement = document.createElement("p");
+      descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
+      const stockElement = document.createElement("p");
+      stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
 
- }
- 
+      // On rattache la balise article a la section Fiches
+      sectionFiches.appendChild(pieceElement);
+      // On rattache l’image à pieceElement (la balise article)
+      pieceElement.appendChild(imageElement);
+      pieceElement.appendChild(nomElement);
+      pieceElement.appendChild(prixElement);
+      pieceElement.appendChild(categorieElement);
+      //Ajout des éléments au DOM pour l'exercice
+      pieceElement.appendChild(descriptionElement);
+      pieceElement.appendChild(stockElement);
+
+   }
+}
+
+document.querySelector(".fiches").innerHTML = '';
+
 // Ajout des fonctionnalités de tri et de filtre
 const btnTrier = document.querySelector(".btn-trier");
 btnTrier.addEventListener("click", () => {
    pieces.sort((a, b) => a.prix - b.prix);
-   console.log(pieces)
-   const nomDesPieces = pieces.map(piece => piece.nom);
-   console.log(nomDesPieces);
+   genererPieces(pieces);
 })
 const btnFiltrer = document.querySelector(".btn-filtrer");
 btnFiltrer.addEventListener("click", () => {
+   document.querySelector(".fiches").innerHTML = '';
    let prixAbordables = pieces.filter(piece => piece.prix > 35);
-   console.log(prixAbordables)
+   genererPieces(prixAbordables);
 })
 const btn_trierd = document.querySelector(".btn_trierd");
 btn_trierd.addEventListener("click", () => {
+   document.querySelector(".fiches").innerHTML = '';
    pieces.sort((a, b) => b.prix - a.prix);
-   console.log(pieces)
+   genererPieces(pieces)
 })
 const btn_sansdescription = document.querySelector(".btn_sansdescription");
 btn_sansdescription.addEventListener("click", () => {
+   document.querySelector(".fiches").innerHTML = '';
    let piecesSansDescription  = pieces.filter(piece => piece.description == undefined);
-   console.log(piecesSansDescription)
+   genererPieces(piecesSansDescription)
 })
 
 // Affichage des pièces abordables dans une liste
+/*
 let piecesAbordables = document.querySelector(".abordables");
 let trieDepiecesAbordables = pieces.filter(piece => piece.prix < 35);
 
@@ -81,6 +87,7 @@ let ul2 = document.createElement("ul")
 piecesDisponibles.appendChild(ul2)
 for (let i = 0; i < piecesEnStock.length; i++) {
    let li2 = document.createElement("li")
-   li2.innerText = piecesEnStock.map(piece => piece.nom)[i]
+   li2.innerText = piecesEnStock.map(piece => piece.nom)[i] + '-' + piecesEnStock[i].prix + '€'
    ul2.appendChild(li2)
 }
+*/
